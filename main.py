@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import mhgParser as ps
+import mhkcParser as ps
 import os
 import multiprocessing as mp
 import json
@@ -9,7 +9,7 @@ import time
 import random
 import progressbar
 
-url = "https://www.manhuagui.com/comic/17201/"
+url = ""
 foldpref = "./test/"
 
 class dlManga(object):
