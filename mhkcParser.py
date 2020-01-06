@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+"""
+Parser for mh12306.com
+"""
+
 import requests
 import bs4
 import json

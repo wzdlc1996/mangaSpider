@@ -1,3 +1,7 @@
+"""
+Parser for www.manhuagui.com
+"""
+
 import dukpy
 import lzstring
 import re

@@ -9,7 +9,7 @@ import time
 import random
 import progressbar
 
-url = ""
+url = "http://mh12306.com/comic/5d4e8479019c1c5461c704bd.html"
 foldpref = "./test/"
 
 class dlManga(object):
@@ -27,7 +27,7 @@ with open("./config.json","r") as f:
 
 chapList = ps.getChapterList(url)
 totNum = len(chapList)
-for ind in progressbar.progressbar(range(totNum)):
+for ind in progressbar.progressbar(range(0, 3)):
     chap = chapList[ind]
     chapPath = foldpref+chap["Text"]+"/"
     try:
