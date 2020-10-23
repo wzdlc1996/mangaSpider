@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import nightyMhParser as ps
+import mhbParser as ps
 import os
 import multiprocessing as mp
 import json
@@ -9,7 +9,7 @@ import time
 import random
 import progressbar
 
-url = "http://www.90mh.com/manhua/zongzhijiushifeichangkeai/"
+url = "https://www.manhuabei.com/manhua/dianjuren/"
 foldpref = "./test/"
 
 class dlManga(object):
@@ -27,7 +27,7 @@ with open("./config.json","r") as f:
 
 chapList = ps.getChapterList(url)
 totNum = len(chapList)
-for ind in progressbar.progressbar(range(91, totNum)):
+for ind in progressbar.progressbar(range(totNum)):
     chap = chapList[ind]
     chapPath = foldpref+chap["Text"]+"/"
     try:
@@ -39,6 +39,9 @@ for ind in progressbar.progressbar(range(91, totNum)):
     headerOption.update(addOption)
     with mp.Pool(processes=4) as pool:
         pool.map(dlManga(chapPath, headerOption), dlDic)
+    #z = dlManga(chapPath, headerOption)
+    #for x in dlDic:
+    #    z(x)
     time.sleep(0.5+random.random() * 0.5)
 
 if __name__=="__main__":

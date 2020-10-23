@@ -33,7 +33,7 @@ def getDlSetting(url):
     formatedSite = bs4.BeautifulSoup(baseSite.content, features="lxml")
     allImgAddr = re.search(r"chapterImages = \[(.*)\]",str(formatedSite)).group(1).split(",")
     allImgAddr = list(map(lambda x: x[1:-1], allImgAddr))
-    bed = "http://js1.zzszs.com.cn/" + re.search(r'chapterPath = "(.*?)"', str(formatedSite)).group(1)
+    bed = "https://js1.zzszs.com.cn/" + re.search(r'chapterPath = "(.*?)"', str(formatedSite)).group(1)
     pathURLs = []
     ind = 0
     for x in allImgAddr:
