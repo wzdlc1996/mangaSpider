@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import mhbParser as ps
+import mhcParser as ps
 import os
 import multiprocessing as mp
 import json
@@ -9,7 +9,8 @@ import time
 import random
 import progressbar
 
-url = "https://www.manhuabei.com/manhua/dianjuren/"
+url = "https://www.manhuacat.com/manga/5611.html"
+ext = ""
 foldpref = "./test/"
 
 class dlManga(object):
@@ -19,7 +20,7 @@ class dlManga(object):
         self.opt = opt
     def __call__(self, dic):
         getFile = rq.get(dic['URL'], headers=self.opt).content
-        with open(self.fold+dic["Name"]+".jpg","wb") as f:
+        with open(self.fold+dic["Name"]+ext, "wb") as f:
             f.write(getFile)
 
 with open("./config.json","r") as f:
@@ -43,6 +44,3 @@ for ind in progressbar.progressbar(range(totNum)):
     #for x in dlDic:
     #    z(x)
     time.sleep(0.5+random.random() * 0.5)
-
-if __name__=="__main__":
-    pass

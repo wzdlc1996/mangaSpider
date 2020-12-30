@@ -44,4 +44,10 @@ var Crypto = function(){
 return Crypto;
 }()
 ```
-在获得章节图片信息后即可. 值得注意的是部分章节并不从dmzj中获取, 而是通过 "manga.mipcdn.com/*" 的模式加载, 需要注意调节. 
+在获得章节图片信息后即可. 值得注意的是部分章节并不从dmzj中获取, 而是通过 "manga.mipcdn.com/*" 的模式加载, 需要注意调节.
+
+## Manhuacat
+
+站点 [Manhuacat](https://www.manhuacat.com/) 将加密信息放在页面html中的 `img_data` 变量中, 使用 `LZString.decompressFromBase64` 实现加密. 注意请求图片时需要在请求头加入referer, 其值为当前页面html中的 `cur_url`, 正是chapter的地址. 请求到的内容按二进制写入后为webp格式. 
+
+该站点似乎会对ip流量进行限制, 还未找到解决方案.
