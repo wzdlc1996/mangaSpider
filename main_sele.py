@@ -26,7 +26,7 @@ browser = webdriver.Firefox(executable_path="./driver/geckodriver", options=fire
 
 for i in progressbar.progressbar(range(len(chaps))):
     n = getPicNumber(chaps[i]["url"])
-    fold = "./test/{}".format(chaps[i]["name"])
+    fold = "./kazouku/{}".format(chaps[i]["name"])
     try:
         os.mkdir(fold)
     except FileExistsError:

@@ -1,7 +1,7 @@
 !.gitignore
 __pycache__
 .DS_Store
-test
+kazouku
 test_bk
 driver
 .*
