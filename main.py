@@ -12,7 +12,7 @@ import urllib.request
 
 proxy = urllib.request.getproxies()
 
-url = "https://www.manhuagui.com/comic/21061/"
+url = "https://www.mhgui.com/comic/21061/"
 ext = ""
 foldpref = "./test/"
 
@@ -21,20 +21,22 @@ class dlManga(object):
         self.session = rq.session()
         self.fold = fold
         self.opt = opt
+
     def __call__(self, dic):
         getFile = rq.get(dic['URL'], headers=self.opt, proxies=proxy).content
         with open(self.fold+dic["Name"]+ext, "wb") as f:
             f.write(getFile)
 
-with open("./config.json","r") as f:
+
+with open("./config.json", "r") as f:
     conf = json.load(f)
 
 chapList = ps.getChapterList(url, proxies=proxy)
 
 totNum = len(chapList)
-for ind in progressbar.progressbar(range(totNum-1, totNum)):
+for ind in progressbar.progressbar(range(totNum)):
     chap = chapList[ind]
-    chapPath = foldpref+chap["Text"]+"/"
+    chapPath = foldpref+chap["Text"] + "/"
     try:
         os.mkdir(foldpref+chap["Text"])
     except FileExistsError:
@@ -46,7 +48,6 @@ for ind in progressbar.progressbar(range(totNum-1, totNum)):
     #     pool.map(dlManga(chapPath, headerOption), dlDic)
     z = dlManga(chapPath, headerOption)
     for x in dlDic:
-        print(f"Begin for {x['Name']}")
         try:
             z(x)
         except:

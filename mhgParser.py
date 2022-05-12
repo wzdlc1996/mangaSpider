@@ -9,7 +9,7 @@ import requests
 import bs4
 import json
 
-baseURL = "https://www.manhuagui.com"
+baseURL = "https://www.mhgui.com"
 imgURL = "https://i.hamreus.com"
 
 def getChapterList(url, **kwargs):
@@ -30,7 +30,13 @@ def getChapterList(url, **kwargs):
 def getCoreInfo(url, **kwargs):
     with open("./config.json", "r") as f:
         conf = json.load(f)
-    getSite = bs4.BeautifulSoup(requests.get(url, headers = {"User-Agent": conf["User-Agent"]}, **kwargs).content, features="lxml")
+    getSite = bs4.BeautifulSoup(
+        requests.get(
+            url, headers={"User-Agent": conf["User-Agent"]},
+            **kwargs
+        ).content,
+        features="lxml"
+    )
     jsSlic = re.search(r">window.*(\(function\(p.*?)</script>", str(getSite)).group(1)
     coreStr = re.search(r"[0-9],'([A-Za-z0-9+/=]+?)'", jsSlic).group(1)
     decStr = lzstring.LZString.decompressFromBase64(coreStr)
